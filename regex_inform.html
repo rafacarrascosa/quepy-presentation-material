@@ -1,0 +1,118 @@
+
+<html><body>
+<table style="border:0" align="center">
+    <tr>
+        <td colspan="3"><h2 style="text-align: center"> </h2></td>
+    </tr>
+    <tr><td colspan="3"><hr /></td></tr>
+    
+<tr>
+    <td colspan="3"><h2 style="text-align: center"></h2></td>
+</tr>
+<tr>
+    <td>
+        <b style="text-align: center"></b><br /> <pre>        regex = Token("What") + Lemma("be") + Pos("NN")</pre> </td>
+    <td style="padding-left: 30px">
+        <b style="text-align: center"></b><br /> What is aluminum
+        <br /> What|what|WP is|be|VBZ aluminum|aluminum|NN </td>
+    <td style="padding-left: 30px">
+        <b style="text-align: center"></b><br /> <pre>{}</pre> </td>
+</tr>
+<tr>
+    <td colspan="3"><hr /></td>
+</tr>
+
+<tr>
+    <td colspan="3"><h2 style="text-align: center"></h2></td>
+</tr>
+<tr>
+    <td>
+        <b style="text-align: center"></b><br /> <pre>        regex = Token("What") + Lemma("be") + Pos("NN")</pre> </td>
+    <td style="padding-left: 30px">
+        <b style="text-align: center"></b><br /> What is jumped
+        <br /> What|what|WP is|be|VBZ jumped|jump|VBN </td>
+    <td style="padding-left: 30px">
+        <b style="text-align: center"></b><br /> <pre>None</pre> </td>
+</tr>
+<tr>
+    <td colspan="3"><hr /></td>
+</tr>
+
+<tr>
+    <td colspan="3"><h2 style="text-align: center"></h2></td>
+</tr>
+<tr>
+    <td>
+        <b style="text-align: center"></b><br /> <pre>        regex = Pos("WP") + Lemma("be") + Thing()</pre> </td>
+    <td style="padding-left: 30px">
+        <b style="text-align: center"></b><br /> What is love
+        <br /> What|what|WP is|be|VBZ love|love|VBP </td>
+    <td style="padding-left: 30px">
+        <b style="text-align: center"></b><br /> <pre>{'thing': u'love'}</pre> </td>
+</tr>
+<tr>
+    <td colspan="3"><hr /></td>
+</tr>
+
+<tr>
+    <td colspan="3"><h2 style="text-align: center"></h2></td>
+</tr>
+<tr>
+    <td>
+        <b style="text-align: center"></b><br /> <pre>        a = Token("a")
+        b = Token("b")
+        regex = Star((a + a) | b) + a</pre> </td>
+    <td style="padding-left: 30px">
+        <b style="text-align: center"></b><br /> a a b b a a a
+        <br /> a|a|DT a|a|DT b|b|NN b|b|NN a|a|DT a|a|DT a|a|DT </td>
+    <td style="padding-left: 30px">
+        <b style="text-align: center"></b><br /> <pre>{}</pre> </td>
+</tr>
+<tr>
+    <td colspan="3"><hr /></td>
+</tr>
+
+<tr>
+    <td colspan="3"><h2 style="text-align: center"></h2></td>
+</tr>
+<tr>
+    <td>
+        <b style="text-align: center"></b><br /> <pre>        A = Pos("WP") + Lemmas("be the duration of")
+        B = Lemma("how") + Lemma("long") + Lemma("be")
+
+        regex = (A | B) + Movie() + Pos(".")</pre> </td>
+    <td style="padding-left: 30px">
+        <b style="text-align: center"></b><br /> How long is The Neverending Story?
+        <br /> How|how|WRB long|long|JJ is|be|VBZ The|the|DT Neverending|neverending|NNP Story|story|NNP ?|?|. </td>
+    <td style="padding-left: 30px">
+        <b style="text-align: center"></b><br /> <pre>{'movie': u'The Neverending Story'}</pre> </td>
+</tr>
+<tr>
+    <td colspan="3"><hr /></td>
+</tr>
+
+<tr>
+    <td colspan="3"><h2 style="text-align: center"></h2></td>
+</tr>
+<tr>
+    <td>
+        <b style="text-align: center"></b><br /> <pre>        class Movie(Particle):
+            regex = Question(Pos("DT")) + \
+                    Plus(Pos("NN") | Pos("NNS") | Pos("NNP") | Pos("NNPS"))
+
+            def semantics(self, match):
+                return match.words.tokens
+
+        regex = Movie()</pre> </td>
+    <td style="padding-left: 30px">
+        <b style="text-align: center"></b><br /> The Matrix
+        <br /> The|the|DT Matrix|matrix|NNP </td>
+    <td style="padding-left: 30px">
+        <b style="text-align: center"></b><br /> <pre>{'movie': u'The Matrix'}</pre> </td>
+</tr>
+<tr>
+    <td colspan="3"><hr /></td>
+</tr>
+
+</table>
+</body></html>
